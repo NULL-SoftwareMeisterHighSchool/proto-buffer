@@ -1,4 +1,0 @@
-syntax = "proto3";
-option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/core/pb";
-package core;
-

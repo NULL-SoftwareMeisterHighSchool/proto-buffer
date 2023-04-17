@@ -1,0 +1,102 @@
+syntax = "proto3";
+package articles;
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/articles/pb";
+
+message CreateArticleRequest {
+    uint32 authorID = 1;
+    string title = 2;
+    string body = 3;
+}
+
+message CreateArticleResponse {
+    uint32 articleID = 1;
+}
+
+message Duration {
+    string from = 1;
+    optional string to = 2;
+}
+
+message OK {
+    bool ok = 1;
+}
+
+message ListArticleRequest {
+    uint32 page = 1;
+    uint32 pageSize = 2;
+    optional uint32 authorID = 3;
+    optional bool isPrivate = 4;
+    optional Duration duration = 5;   // 시작일 ~ 종료일
+}
+
+message ListArticleElement {
+    uint32 articleID = 1;
+    uint32 authorID = 2;
+    string title = 3;
+    string summary = 4;
+    string createdAt = 5;
+    string updatedAt = 6;
+    bool isPrivate = 7;
+}
+
+message ListArticleResponse {
+    repeated ListArticleElement articles = 1;
+}
+
+
+message GetArticleRequest {
+    uint32 articleID = 1;
+}
+
+message GetArticleResponse {
+    string title = 1;
+    string createdAt = 2;
+    string updatedAt = 3;
+    bool isPrivate = 4;
+    string body = 5;
+}
+
+message UpdateArticleRequest {
+    optional string title = 1;
+    optional string body = 2;
+    optional bool isPrivate = 3;
+}
+
+message UpdateArticleResponse {
+    OK ok = 1;
+}
+
+
+message DeleteArticleRequest {
+    uint32 articleID = 1;
+}
+
+message DeleteArticleResponse {
+    OK ok = 1;
+}
+
+
+service ArticleService {
+    rpc CreateArticle(CreateArticleRequest) returns (CreateArticleResponse);
+    rpc ListArticle(ListArticleRequest) returns (ListArticleResponse);
+    rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
+    rpc UpdateArticle(UpdateArticleRequest) returns (UpdateArticleResponse);
+    rpc DeleteArticle(DeleteArticleRequest) returns (DeleteArticleResponse);
+}
+
+message GetContributionCountRequest {
+    repeated uint32 userIDs = 1;
+}
+
+message ContributionElement {
+    uint32 userID = 1;
+    uint32 count = 2;
+}
+
+message GetCountributionCountResponse {
+    repeated ContributionElement contElems = 1;
+}
+
+service RankService {
+    rpc GetContributionCount(GetContributionCountRequest) returns (GetCountributionCountResponse);
+}
