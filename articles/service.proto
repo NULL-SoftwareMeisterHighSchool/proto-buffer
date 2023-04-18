@@ -1,6 +1,17 @@
 syntax = "proto3";
 package articles;
+
 option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/articles/pb";
+
+message OK {
+    bool ok = 1;
+}
+
+message Duration {
+    string from = 1;
+    optional string to = 2;
+}
+
 
 message CreateArticleRequest {
     uint32 authorID = 1;
@@ -12,14 +23,6 @@ message CreateArticleResponse {
     uint32 articleID = 1;
 }
 
-message Duration {
-    string from = 1;
-    optional string to = 2;
-}
-
-message OK {
-    bool ok = 1;
-}
 
 message ListArticleRequest {
     uint32 page = 1;
@@ -56,6 +59,7 @@ message GetArticleResponse {
     string body = 5;
 }
 
+
 message UpdateArticleRequest {
     optional string title = 1;
     optional string body = 2;
@@ -82,21 +86,4 @@ service ArticleService {
     rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
     rpc UpdateArticle(UpdateArticleRequest) returns (UpdateArticleResponse);
     rpc DeleteArticle(DeleteArticleRequest) returns (DeleteArticleResponse);
-}
-
-message GetContributionCountRequest {
-    repeated uint32 userIDs = 1;
-}
-
-message ContributionElement {
-    uint32 userID = 1;
-    uint32 count = 2;
-}
-
-message GetCountributionCountResponse {
-    repeated ContributionElement contElems = 1;
-}
-
-service RankService {
-    rpc GetContributionCount(GetContributionCountRequest) returns (GetCountributionCountResponse);
 }

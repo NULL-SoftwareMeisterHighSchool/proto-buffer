@@ -1,0 +1,21 @@
+syntax = "proto3";
+package rank;
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/rank/pb";
+
+
+message GetContributionCountRequest {
+    repeated uint32 userIDs = 1;
+}
+
+message ContributionElement {
+    uint32 userID = 1;
+    uint32 count = 2;
+}
+
+message GetCountributionCountResponse {
+    repeated ContributionElement contElems = 1;
+}
+
+service RankService {
+    rpc GetContributionCount(GetContributionCountRequest) returns (GetCountributionCountResponse);
+}
