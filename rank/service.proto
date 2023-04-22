@@ -1,6 +1,6 @@
 syntax = "proto3";
 package rank;
-option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/rank/pb";
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/rank/pb;rank_pb";
 
 
 message GetContributionCountRequest {
