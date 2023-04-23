@@ -2,9 +2,13 @@ syntax = "proto3";
 package rank;
 option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/rank/pb;rank_pb";
 
+message UserInfo {
+    uint32 userID = 1;
+    string userLogin = 2;
+}
 
 message GetContributionCountRequest {
-    repeated uint32 userIDs = 1;
+    repeated UserInfo users = 1;
 }
 
 message ContributionElement {
