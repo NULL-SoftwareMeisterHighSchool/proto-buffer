@@ -75,11 +75,19 @@ message GetArticleResponse {
     string body = 7;
 }
 
+message SetArticleVisibilityRequest {
+    uint32 articleID = 1;
+    bool isPrivate = 2;
+}
+
+message SetArticleVisibilityResponse {
+    bool ok = 1;
+}
 
 message UpdateArticleRequest {
-    optional string title = 1;
-    optional string body = 2;
-    optional bool isPrivate = 3;
+    uint32 articleID = 1;
+    optional string title = 2;
+    optional string body = 3;
 }
 
 message UpdateArticleResponse {
@@ -102,4 +110,5 @@ service ArticleService {
     rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
     rpc UpdateArticle(UpdateArticleRequest) returns (UpdateArticleResponse);
     rpc DeleteArticle(DeleteArticleRequest) returns (DeleteArticleResponse);
+    rpc SetArticleVisibility (SetArticleVisibilityRequest) returns (SetArticleVisibilityResponse);
 }
