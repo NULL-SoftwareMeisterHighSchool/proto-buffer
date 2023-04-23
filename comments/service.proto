@@ -1,0 +1,11 @@
+syntax = "proto3";
+package commnets;
+
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/comments/pb;comments_pb";
+
+
+service CommentService {
+    rpc CreateComment (Request) returns (Response);
+    rpc DeleteCommnet (Request) returns (Response);
+    rpc GetCommentsByArticleID (Request) returns (Response);
+}
