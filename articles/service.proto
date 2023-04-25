@@ -10,6 +10,10 @@ message Duration {
     google.protobuf.Timestamp end = 2;
 }
 
+message StatusResponse {
+    uint32 status = 1;
+}
+
 enum ArticleType {
     GENERAL = 0;
     TECH = 1;
@@ -19,10 +23,6 @@ message CreateArticleRequest {
     uint32 authorID = 1;
     ArticleType type = 2;
     string title = 3;
-}
-
-message CreateArticleResponse {
-    uint32 articleID = 1;
 }
 
 enum ListArticleOrder {
@@ -35,12 +35,13 @@ message ListArticleRequest {
     uint32 offset = 1;
     uint32 amount = 2;
     ListArticleOrder order = 3;
+    optional uint32 userID = 4;
 
     // filters
-    optional ArticleType type = 4;
-    optional uint32 authorID = 5;
-    optional bool isPrivate = 6;
-    optional Duration duration = 7;   // 시작일 ~ 종료일
+    optional ArticleType type = 5;
+    optional uint32 authorID = 6;
+    optional bool isPrivate = 7;
+    optional Duration duration = 8;   // 시작일 ~ 종료일
 }
 
 message ListArticleElement {
@@ -52,6 +53,8 @@ message ListArticleElement {
     google.protobuf.Timestamp createdAt = 6;
     google.protobuf.Timestamp updatedAt = 7;
     bool isPrivate = 8;
+    uint64 views = 9;
+    uint32 likes = 10;
 }
 
 message ListArticleResponse {
@@ -61,53 +64,60 @@ message ListArticleResponse {
 
 message GetArticleRequest {
     uint32 articleID = 1;
+    optional uint32 userID = 2;
 }
 
 message GetArticleResponse {
     uint32 status = 1;
-    string title = 2;
-    ArticleType type = 3;
-    uint32 authorID = 4;
-    google.protobuf.Timestamp createdAt = 5;
-    google.protobuf.Timestamp updatedAt = 6;
-    bool isPrivate = 7;
+    uint32 articleID = 2;
+    uint32 authorID = 3;
+    ArticleType type = 4;
+    string title = 5;
+    google.protobuf.Timestamp createdAt = 6;
+    google.protobuf.Timestamp updatedAt = 7;
     string body = 8;
+    uint64 views = 9;
+    uint32 likes = 10;
+    bool isPrivate = 11;
+    bool isLiked = 12;
 }
 
 message SetArticleVisibilityRequest {
     uint32 articleID = 1;
-    bool isPrivate = 2;
+    uint32 userID = 2;
+    bool isPrivate = 3;
 }
 
-message SetArticleVisibilityResponse {
-    uint32 status = 1;
-}
-
-message UpdateArticleRequest {
+message UpdateArticleBodyRequest {
     uint32 articleID = 1;
-    optional string title = 2;
-    optional string body = 3;
+    uint32 userID = 2;
+    string body = 3;
 }
 
-message UpdateArticleResponse {
-    uint32 status = 1;
+message UpdateArticleTitleRequest {
+    uint32 articleID = 1;
+    uint32 userID = 2;
+    string title = 3;
 }
-
 
 message DeleteArticleRequest {
     uint32 articleID = 1;
+    uint32 userID = 2;
 }
 
-message DeleteArticleResponse {
-    uint32 status = 1;
+message ToggleArticleLikeRequest {
+    uint32 articleID = 1;
+    uint32 userID = 2;
 }
 
 
 service ArticleService {
-    rpc CreateArticle(CreateArticleRequest) returns (CreateArticleResponse);
+    rpc CreateArticle(CreateArticleRequest) returns (StatusResponse);
     rpc ListArticle(ListArticleRequest) returns (ListArticleResponse);
     rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
-    rpc UpdateArticle(UpdateArticleRequest) returns (UpdateArticleResponse);
-    rpc DeleteArticle(DeleteArticleRequest) returns (DeleteArticleResponse);
-    rpc SetArticleVisibility (SetArticleVisibilityRequest) returns (SetArticleVisibilityResponse);
+    rpc UpdateArticleBody(UpdateArticleBodyRequest) returns (StatusResponse);
+    rpc UpdateArticleTitle (UpdateArticleTitleRequest) returns (StatusResponse);
+    rpc DeleteArticle(DeleteArticleRequest) returns (StatusResponse);
+    rpc SetArticleVisibility (SetArticleVisibilityRequest) returns (StatusResponse);
+    rpc ToggleArticleLike(ToggleArticleLikeRequest) returns (StatusResponse);
 }
