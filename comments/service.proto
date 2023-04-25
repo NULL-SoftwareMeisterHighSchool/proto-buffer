@@ -5,6 +5,11 @@ option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServe
 
 import "google/protobuf/timestamp.proto";
 
+
+message StatusResponse {
+    uint32 status = 1;
+}
+
 message CreateCommentRequest {
     uint32 articleID = 1;
     uint32 authorID = 2;
@@ -12,17 +17,9 @@ message CreateCommentRequest {
     optional uint32 replyTo = 4;
 }
 
-message CreateCommentResponse {
-    uint32 status = 1;
-}
-
 message DeleteCommnetRequest {
     uint32 commentID = 1;
     uint32 userID = 2;
-}
-
-message DeleteCommentResponse {
-    uint32 status = 1;
 }
 
 message GetCommentsByArticleIDRequest {
@@ -43,7 +40,7 @@ message GetCommentsByArticleIDResponse {
 }
 
 service CommentService {
-    rpc CreateComment (CreateCommentRequest) returns (CreateCommentResponse);
-    rpc DeleteCommnet (DeleteCommnetRequest) returns (DeleteCommentResponse);
+    rpc CreateComment (CreateCommentRequest) returns (StatusResponse);
+    rpc DeleteCommnet (DeleteCommnetRequest) returns (StatusResponse);
     rpc GetCommentsByArticleID (GetCommentsByArticleIDRequest) returns (GetCommentsByArticleIDResponse);
 }
