@@ -1,7 +1,7 @@
 syntax = "proto3";
 package commnets;
 
-option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/comments/pb;comments_pb";
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/comments/pb;comments_pb";
 
 import "google/protobuf/timestamp.proto";
 
