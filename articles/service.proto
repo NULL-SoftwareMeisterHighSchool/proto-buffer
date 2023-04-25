@@ -19,8 +19,6 @@ message CreateArticleRequest {
     uint32 authorID = 1;
     ArticleType type = 2;
     string title = 3;
-    string body = 4;
-    
 }
 
 message CreateArticleResponse {
@@ -66,13 +64,14 @@ message GetArticleRequest {
 }
 
 message GetArticleResponse {
-    string title = 1;
-    ArticleType type = 2;
-    uint32 authorID = 3;
-    google.protobuf.Timestamp createdAt = 4;
-    google.protobuf.Timestamp updatedAt = 5;
-    bool isPrivate = 6;
-    string body = 7;
+    uint32 status = 1;
+    string title = 2;
+    ArticleType type = 3;
+    uint32 authorID = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    google.protobuf.Timestamp updatedAt = 6;
+    bool isPrivate = 7;
+    string body = 8;
 }
 
 message SetArticleVisibilityRequest {
@@ -81,7 +80,7 @@ message SetArticleVisibilityRequest {
 }
 
 message SetArticleVisibilityResponse {
-    bool ok = 1;
+    uint32 status = 1;
 }
 
 message UpdateArticleRequest {
@@ -91,7 +90,7 @@ message UpdateArticleRequest {
 }
 
 message UpdateArticleResponse {
-    bool ok = 1;
+    uint32 status = 1;
 }
 
 
@@ -100,7 +99,7 @@ message DeleteArticleRequest {
 }
 
 message DeleteArticleResponse {
-    bool ok = 1;
+    uint32 status = 1;
 }
 
 
