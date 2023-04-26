@@ -1,0 +1,18 @@
+syntax = "proto3";
+package users;
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/users/pb;users_pb";
+
+message Nothing {}
+
+message CreateUserEvent {
+    uint32 userID = 1;
+}
+
+message DeleteUserEvent {
+    uint32 userID = 1;
+}
+
+service UserEventService {
+    rpc PublishUserCreated (CreateUserEvent) returns (Nothing);
+    rpc PublishUserDeleted (DeleteUserEvent) returns (Nothing);
+}
