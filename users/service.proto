@@ -1,6 +1,6 @@
 syntax = "proto3";
 package users;
-option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/users/pb;users_pb";
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/pb/users;users_pb";
 
 message Nothing {}
 

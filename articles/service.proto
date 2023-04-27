@@ -1,7 +1,7 @@
 syntax = "proto3";
 package articles;
 
-option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/articles/pb;articles_pb";
+option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/pb/articles;articles_pb";
 
 import "google/protobuf/timestamp.proto";
 
