@@ -2,7 +2,8 @@ syntax = "proto3";
 package users;
 option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/pb/users;users_pb";
 
-message Nothing {}
+import "google/protobuf/empty.proto";
+
 
 message CreateUserEvent {
     uint32 userID = 1;
@@ -13,6 +14,6 @@ message DeleteUserEvent {
 }
 
 service UserEventService {
-    rpc PublishUserCreated (CreateUserEvent) returns (Nothing);
-    rpc PublishUserDeleted (DeleteUserEvent) returns (Nothing);
+    rpc PublishUserCreated (CreateUserEvent) returns (google.protobuf.Empty);
+    rpc PublishUserDeleted (DeleteUserEvent) returns (google.protobuf.Empty);
 }

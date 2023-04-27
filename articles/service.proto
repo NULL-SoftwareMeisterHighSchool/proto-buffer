@@ -4,14 +4,11 @@ package articles;
 option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/pb/articles;articles_pb";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 message Duration {
     google.protobuf.Timestamp start = 1;
     google.protobuf.Timestamp end = 2;
-}
-
-message StatusResponse {
-    uint32 status = 1;
 }
 
 enum ArticleType {
@@ -68,18 +65,17 @@ message GetArticleRequest {
 }
 
 message GetArticleResponse {
-    uint32 status = 1;
-    uint32 articleID = 2;
-    uint32 authorID = 3;
-    ArticleType type = 4;
-    string title = 5;
-    google.protobuf.Timestamp createdAt = 6;
-    google.protobuf.Timestamp updatedAt = 7;
-    string body = 8;
-    uint64 views = 9;
-    uint32 likes = 10;
-    bool isPrivate = 11;
-    bool isLiked = 12;
+    uint32 articleID = 1;
+    uint32 authorID = 2;
+    ArticleType type = 3;
+    string title = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    google.protobuf.Timestamp updatedAt = 6;
+    string body = 7;
+    uint64 views = 8;
+    uint32 likes = 9;
+    bool isPrivate = 10;
+    bool isLiked = 11;
 }
 
 message SetArticleVisibilityRequest {
@@ -112,12 +108,12 @@ message ToggleArticleLikeRequest {
 
 
 service ArticleService {
-    rpc CreateArticle(CreateArticleRequest) returns (StatusResponse);
+    rpc CreateArticle(CreateArticleRequest) returns (google.protobuf.Empty);
     rpc ListArticle(ListArticleRequest) returns (ListArticleResponse);
     rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
-    rpc UpdateArticleBody(UpdateArticleBodyRequest) returns (StatusResponse);
-    rpc UpdateArticleTitle (UpdateArticleTitleRequest) returns (StatusResponse);
-    rpc DeleteArticle(DeleteArticleRequest) returns (StatusResponse);
-    rpc SetArticleVisibility (SetArticleVisibilityRequest) returns (StatusResponse);
-    rpc ToggleArticleLike(ToggleArticleLikeRequest) returns (StatusResponse);
+    rpc UpdateArticleBody(UpdateArticleBodyRequest) returns (google.protobuf.Empty);
+    rpc UpdateArticleTitle (UpdateArticleTitleRequest) returns (google.protobuf.Empty);
+    rpc DeleteArticle(DeleteArticleRequest) returns (google.protobuf.Empty);
+    rpc SetArticleVisibility (SetArticleVisibilityRequest) returns (google.protobuf.Empty);
+    rpc ToggleArticleLike(ToggleArticleLikeRequest) returns (google.protobuf.Empty);
 }

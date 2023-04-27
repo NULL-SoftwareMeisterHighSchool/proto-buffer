@@ -4,11 +4,7 @@ package commnets;
 option go_package = "github.com/NULL-SoftwareMeisterHighSchool/Project_FileServer/common/grpc/server/pb/comments;comments_pb";
 
 import "google/protobuf/timestamp.proto";
-
-
-message StatusResponse {
-    uint32 status = 1;
-}
+import "google/protobuf/empty.proto";
 
 message CreateCommentRequest {
     uint32 articleID = 1;
@@ -35,12 +31,11 @@ message CommentElem {
 }
 
 message GetCommentsByArticleIDResponse {
-    uint32 status = 1;
-    repeated CommentElem comments = 2;
+    repeated CommentElem comments = 1;
 }
 
 service CommentService {
-    rpc CreateComment (CreateCommentRequest) returns (StatusResponse);
-    rpc DeleteCommnet (DeleteCommnetRequest) returns (StatusResponse);
+    rpc CreateComment (CreateCommentRequest) returns (google.protobuf.Empty);
+    rpc DeleteCommnet (DeleteCommnetRequest) returns (google.protobuf.Empty);
     rpc GetCommentsByArticleID (GetCommentsByArticleIDRequest) returns (GetCommentsByArticleIDResponse);
 }
