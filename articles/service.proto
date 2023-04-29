@@ -12,8 +12,9 @@ message Duration {
 }
 
 enum ArticleType {
-    GENERAL = 0;
-    TECH = 1;
+    ALL = 0;
+    GENERAL = 1;
+    TECH = 2;
 }
 
 message CreateArticleRequest {
@@ -23,8 +24,8 @@ message CreateArticleRequest {
 }
 
 enum ListArticleOrder {
-    POPULARITY = 0;
-    TIME = 1;
+    TIME = 0;
+    POPULARITY = 1;
     RELEVANCE = 2;
 }
 
