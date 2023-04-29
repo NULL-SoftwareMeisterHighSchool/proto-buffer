@@ -39,6 +39,7 @@ message ListArticleRequest {
     optional uint32 authorID = 6;
     optional bool isPrivate = 7;
     optional Duration duration = 8;   // 시작일 ~ 종료일
+    optional string query = 9;
 }
 
 message ListArticleElement {
