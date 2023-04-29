@@ -33,9 +33,9 @@ message ListArticleRequest {
     uint32 offset = 1;
     uint32 amount = 2;
     ListArticleOrder order = 3;
-
+    
     // filters
-    optional ArticleType type = 4;
+    ArticleType type = 4;
     optional uint32 authorID = 5;
     optional bool isPrivate = 6;
     optional Duration duration = 7;   // 시작일 ~ 종료일
