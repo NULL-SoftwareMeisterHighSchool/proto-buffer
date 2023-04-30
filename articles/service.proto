@@ -62,11 +62,11 @@ message ListArticleByAuthorRequest {
     uint32 offset = 1;
     uint32 amount = 2;
     ListArticleOrder order = 3;
-    optional uint32 userID = 4;
+    uint32 authorID = 4;
+    optional uint32 userID = 5;
     
     // filters
-    ArticleType type = 5;
-    optional uint32 authorID = 6;
+    ArticleType type = 6;
     optional bool isPrivate = 7;
     optional Duration duration = 8;   // 시작일 ~ 종료일
     optional string query = 9;
