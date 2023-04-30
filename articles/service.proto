@@ -37,9 +37,8 @@ message ListArticleRequest {
     // filters
     ArticleType type = 4;
     optional uint32 authorID = 5;
-    optional bool isPrivate = 6;
-    optional Duration duration = 7;   // 시작일 ~ 종료일
-    optional string query = 8;
+    optional Duration duration = 6;   // 시작일 ~ 종료일
+    optional string query = 7;
 }
 
 message ListArticleElement {
@@ -57,6 +56,20 @@ message ListArticleElement {
 
 message ListArticleResponse {
     repeated ListArticleElement articles = 1;
+}
+
+message ListArticleByAuthorRequest {
+    uint32 offset = 1;
+    uint32 amount = 2;
+    ListArticleOrder order = 3;
+    optional uint32 userID = 4;
+    
+    // filters
+    ArticleType type = 5;
+    optional uint32 authorID = 6;
+    optional bool isPrivate = 7;
+    optional Duration duration = 8;   // 시작일 ~ 종료일
+    optional string query = 9;
 }
 
 
@@ -77,6 +90,7 @@ message GetArticleResponse {
     uint32 likes = 9;
     bool isPrivate = 10;
     bool isLiked = 11;
+    bool isAuthor = 12;
 }
 
 message SetArticleVisibilityRequest {
@@ -111,6 +125,7 @@ message ToggleArticleLikeRequest {
 service ArticleService {
     rpc CreateArticle(CreateArticleRequest) returns (google.protobuf.Empty);
     rpc ListArticle(ListArticleRequest) returns (ListArticleResponse);
+    rpc ListArticleByAuthor(ListArticleByAuthorRequest) returns (ListArticleResponse);
     rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
     rpc UpdateArticleBody(UpdateArticleBodyRequest) returns (google.protobuf.Empty);
     rpc UpdateArticleTitle (UpdateArticleTitleRequest) returns (google.protobuf.Empty);
