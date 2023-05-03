@@ -21,6 +21,7 @@ message DeleteCommnetRequest {
 
 message GetCommentsByArticleIDRequest {
     uint32 articleID = 1;
+    optional uint32 userID = 2;
 }
 
 message CommentElem {
