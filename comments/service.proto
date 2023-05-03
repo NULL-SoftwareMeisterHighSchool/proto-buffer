@@ -15,7 +15,8 @@ message CreateCommentRequest {
 
 message DeleteCommnetRequest {
     uint32 commentID = 1;
-    uint32 userID = 2;
+    uint32 articleID = 2;
+    uint32 userID = 3;
 }
 
 message GetCommentsByArticleIDRequest {
