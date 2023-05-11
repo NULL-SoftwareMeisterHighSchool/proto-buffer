@@ -52,6 +52,7 @@ message ListArticleElement {
     bool isPrivate = 8;
     uint64 views = 9;
     uint32 likes = 10;
+    string thumbnail = 11;
 }
 
 message ListArticleResponse {
