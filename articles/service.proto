@@ -23,6 +23,10 @@ message CreateArticleRequest {
     string title = 3;
 }
 
+message CreateArticleResponse {
+    uint32 articleID = 1;
+}
+
 enum ListArticleOrder {
     TIME = 0;
     POPULARITY = 1;
@@ -124,7 +128,7 @@ message ToggleArticleLikeRequest {
 
 
 service ArticleService {
-    rpc CreateArticle(CreateArticleRequest) returns (google.protobuf.Empty);
+    rpc CreateArticle(CreateArticleRequest) returns (CreateArticleResponse);
     rpc ListArticle(ListArticleRequest) returns (ListArticleResponse);
     rpc ListArticleByAuthor(ListArticleByAuthorRequest) returns (ListArticleResponse);
     rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
