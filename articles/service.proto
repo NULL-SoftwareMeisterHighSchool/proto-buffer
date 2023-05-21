@@ -12,9 +12,8 @@ message Duration {
 }
 
 enum ArticleType {
-    ALL = 0;
-    GENERAL = 1;
-    TECH = 2;
+    GENERAL = 0;
+    TECH = 1;
 }
 
 message CreateArticleRequest {
@@ -52,15 +51,17 @@ message ListArticleElement {
     string summary = 4;
     ArticleType type = 5;
     google.protobuf.Timestamp createdAt = 6;
-    google.protobuf.Timestamp updatedAt = 7;
+    bool isAuthor = 7;
     bool isPrivate = 8;
     uint64 views = 9;
     uint32 likes = 10;
-    string thumbnail = 11;
+    uint32 comments = 11;
+    string thumbnail = 12;
 }
 
 message ListArticleResponse {
     repeated ListArticleElement articles = 1;
+    uint32 totalCount = 2;
 }
 
 message ListArticleByAuthorRequest {
@@ -93,9 +94,10 @@ message GetArticleResponse {
     string body = 7;
     uint64 views = 8;
     uint32 likes = 9;
-    bool isPrivate = 10;
-    bool isLiked = 11;
-    bool isAuthor = 12;
+    uint32 comments = 10;
+    bool isPrivate = 11;
+    bool isLiked = 12;
+    bool isAuthor = 13;
 }
 
 message SetArticleVisibilityRequest {
