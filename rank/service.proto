@@ -7,19 +7,23 @@ message UserInfo {
     string userLogin = 2;
 }
 
-message GetContributionCountRequest {
+message GetGithubStatsRequest {
     repeated UserInfo users = 1;
 }
 
-message ContributionElement {
+message GithubStats {
     uint32 userID = 1;
-    uint32 count = 2;
+    uint32 contributionCount = 2;
+    uint32 starCount = 3;
+    uint32 issueCount = 4;
+    uint32 pullRequestCount = 5;
+    uint32 contributedRepositoryCount = 6;
 }
 
-message GetCountributionCountResponse {
-    repeated ContributionElement contElems = 1;
+message GetGithubStatsResponse {
+    repeated GithubStats statElems = 1;
 }
 
 service RankService {
-    rpc GetContributionCount(GetContributionCountRequest) returns (GetCountributionCountResponse);
+    rpc GetContributionCount(GetGithubStatsRequest) returns (GetGithubStatsResponse);
 }
