@@ -38,5 +38,5 @@ message GetGithubStatsResponse {
 service UserEventService {
     rpc PublishUserCreated (CreateUserEvent) returns (google.protobuf.Empty);
     rpc PublishUserDeleted (DeleteUserEvent) returns (google.protobuf.Empty);
-    rpc GetContributionCount(GetGithubStatsRequest) returns (GetGithubStatsResponse);
+    rpc GetGithubStats(GetGithubStatsRequest) returns (GetGithubStatsResponse);
 }
