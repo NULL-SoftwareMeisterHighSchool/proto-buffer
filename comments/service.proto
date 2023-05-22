@@ -26,10 +26,11 @@ message GetCommentsByArticleIDRequest {
 }
 
 message CommentElem {
-    uint32 authorID = 1;
-    string body = 2;
-    google.protobuf.Timestamp createdAt = 3; 
-    uint32 replyCount = 4;
+    uint32 commentID = 1;
+    uint32 authorID = 2;
+    string body = 3;
+    google.protobuf.Timestamp createdAt = 4; 
+    uint32 replyCount = 5;
 }
 
 message GetCommentsByArticleIDResponse {
@@ -43,10 +44,11 @@ message GetRepliesByCommentIDRequest {
 }
 
 message ReplyElem {
-    uint32 authorID = 1;
-    string body = 2;
-    google.protobuf.Timestamp createdAt = 3; 
-    optional uint32 mentionUserID = 4;
+    uint32 commentID = 1;
+    uint32 authorID = 2;
+    string body = 3;
+    google.protobuf.Timestamp createdAt = 4; 
+    optional uint32 mentionUserID = 5;
 }
 
 message GetRepliesByCommentIDResponse {
