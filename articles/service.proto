@@ -28,8 +28,8 @@ message CreateArticleResponse {
 
 enum ListArticleOrder {
     TIME = 0;
-    POPULARITY = 1;
-    RELEVANCE = 2;
+    VIEWS = 1;
+    LIKES = 2;
 }
 
 message ListArticleRequest {
