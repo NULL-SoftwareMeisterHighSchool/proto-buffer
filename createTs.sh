@@ -1,28 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
-protoc \
-    --plugin="protoc-gen-ts=/Users/oneee/.nvm/versions/node/v18.17.0/bin/protoc-gen-ts" \
-    --plugin="protoc-gen-grpc=/Users/oneee/.nvm/versions/node/v18.17.0/bin/grpc_tools_node_protoc_plugin" \
-    --js_out="import_style=commonjs,binary:../client/types" \
-    --ts_out="service=grpc-node,mode=grpc-js:../client/types" \
-    --grpc_out="grpc_js:../client/types" \
-    --experimental_allow_proto3_optional \
-    articles/service.proto
+# ./scripts/compile_proto.sh
+# scan all .proto from ./src/proto and compile them to ./src/libs/codegen/rpc.js & rpc.d.ts
 
-protoc \
-    --plugin="protoc-gen-ts=/Users/oneee/.nvm/versions/node/v18.17.0/bin/protoc-gen-ts" \
-    --plugin="protoc-gen-grpc=/Users/oneee/.nvm/versions/node/v18.17.0/bin/grpc_tools_node_protoc_plugin" \
-    --js_out="import_style=commonjs,binary:../client/types" \
-    --ts_out="service=grpc-node,mode=grpc-js:../client/types" \
-    --grpc_out="grpc_js:../client/types" \
-    --experimental_allow_proto3_optional \
-    comments/service.proto
+export DST="../types"
 
-protoc \
-    --plugin="protoc-gen-ts=/Users/oneee/.nvm/versions/node/v18.17.0/bin/protoc-gen-ts" \
-    --plugin="protoc-gen-grpc=/Users/oneee/.nvm/versions/node/v18.17.0/bin/grpc_tools_node_protoc_plugin" \
-    --js_out="import_style=commonjs,binary:../client/types" \
-    --ts_out="service=grpc-node,mode=grpc-js:../client/types" \
-    --grpc_out="grpc_js:../client/types" \
-    --experimental_allow_proto3_optional \
-    users/service.proto
+rm -rf $DST
+mkdir -p $DST
+
+for name in "articles" "comments" "users"
+do
+    # npx pbjs --target static-module \
+    # --wrap commonjs \
+    # --keep-case \
+    # --path "articles" \
+    # --out "$DST/$name.js" \
+    # ./$name/service.proto
+
+    # npx pbts --out "$DST/$name.d.ts" \
+    # ${DST}/$name.js
+
+    npx pbjs \
+    --ts "$DST/$name.ts" \
+    ./$name/service.proto
+done
